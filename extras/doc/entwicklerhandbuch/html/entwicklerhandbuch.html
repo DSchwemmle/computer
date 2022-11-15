@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="Dominik Schwemmle">
+<title>Entwickler/innen/handComputer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Entwickler/innen/handComputer</h1>
+<div class="details">
+<span id="author" class="author">Dominik Schwemmle</span><br>
+<span id="email" class="email"><a href="mailto:scdo1044@h-ka.de">scdo1044@h-ka.de</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_der_applikationsserver">1. Der Applikationsserver</a>
+<ul class="sectlevel2">
+<li><a href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></li>
+<li><a href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></li>
+<li><a href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></li>
+<li><a href="#_der_anwendungskern">1.4. Der Anwendungskern</a></li>
+<li><a href="#_klasse_für_entities">1.5. Klasse für Entities</a></li>
+</ul>
+</li>
+<li><a href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_der_applikationsserver"><a class="anchor" href="#_der_applikationsserver"></a><a class="link" href="#_der_applikationsserver">1. Der Applikationsserver</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_der_applikationsserver_im_überblick"><a class="anchor" href="#_der_applikationsserver_im_überblick"></a><a class="link" href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></h3>
+<div class="paragraph">
+<p>Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNpTVwgoSi3LTC1XSCktSs5QsHHMKbFL4eJKTC7JL1JwTywugTIdU3Iz86Bs79K8lFQurqLU5JLEvPScVIXk_NyC0pLUIoVqLgUgAGlT0NW1U9BwhkkUlyZnpOZpgqXBRpEon5iXk5qOT8HhJUA3FeFRkHN4WzHCDrAX8LgBmzyKG7ApgLuhlgsAxqdspQ==" alt="Use Cases">
+</div>
+<div class="title">Figure 1. Use Cases</div>
+</div>
+<div class="paragraph">
+<p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor
+accumsan tincidunt.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNUU1Pg0AQvc-vmHDx1l_QkCgaL61W2pvhsN0dYZOVocNC0xj726VAEVO03nbfx-TNmxtcCdWW9mgq0RnOb50PDYCjN4-eUWyaeTRWSHvLOYDSngXjh_UmcpZy3wOPoorsZdFjkLMhDJ6o9AF-AOJrTLuq-S04TUmW1hhHeyWUwImM-L2oPEnEuRd2jiQZwzGV7OoTOEbXJLXV_YSYCi5tE-QwP_NhAp8AoB1Xps3QyDaHgp7jZcsY5dVWlU3M-zvUvSkYlGpLTZCBaC3fW-PxGP6x1I82rmjhV6ozTpXzT8uouKkxOJuFE31e2q8Jz0inm74FTONd4OEuw6vHL67wBRdE87c=" alt="Komponentendiagramm">
+</div>
+<div class="title">Figure 2. Komponentendiagramm</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_rest_schnittstelle"><a class="anchor" href="#_die_rest_schnittstelle"></a><a class="link" href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit
+amet ligula.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVMGO0zAQvfsrRt0DXUGLuEZRtLCIZSWQlgVOiIOJZ1tDYqe2U6jY_jsTJ26cyi3gi-3n55nxzBs_gTuDW4k_QbSmXEP-snKFYEwqh-aBl0jnupYW808FYw0vf_AVwpVC677b56Wua63gNwMoK24tzK6utXJGVxWaGXAL45Y4aykwQqCUpqyQRbdv0PlrNAc-LRPEe9x4Is2BSMsk0Q5EOxJtgnjHDa891a8C2W8S9A8tmp2n-1Wg-02C_tnibZfSEhunTR_SERZMHMHB2H5MP_5qDJLZMe_09pZKEu1to5X1IYQ1LL-QfYHq67KI6xIZpno2Lbn2lg_elJNuBxdv_PBHwc114Od5zyoK5o8PB7HPQUmnCeMr9iwKwKLZSlJiyvM9cvFxOM9zeoB_FlAcR0YoYQ4uXvsxWAo2-pot2mbxWBxAlnBGUozUO3HX7SLtzy8DRtW8abkRdgLFBe4P-pAAnkLXBIRxu1MlPEglXu1uxbzXJ-FSZGCdkWr1DLo2IMjgJgvJI_At5QS93S1NUqvJBesv2Oygi8vs0OMBysOL32uBFTxCqwRSKCh8Yk_EOe-bgrBNN2fTBJ-I9r9DeietOxXWfqq-ab30YlHA7MUsqZ0sqOycheW0cc4TRzGfZw2Nep6Wap0jVtssR_X6BP0zu__BJvQ4N-kW_Ts3Dnr8hIxcrV36J-oKSCX0vyDWDX06NdbfSMPsD_RKMQg=" alt="&quot;ComputerGetController&quot; für Lesezugriffe an der REST-Schnittstelle">
+</div>
+<div class="title">Figure 3. "ComputerGetController" für Lesezugriffe an der REST-Schnittstelle</div>
+</div>
+<div class="paragraph">
+<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec
+sollicitudin molestie malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVUtP20AQvvtXjMIhoEKqXq3UIpC0jSoQSoN6qHpw7Slx6xf7SBvR_PfO7nrXG7IQyCXz-Oaxs7Ofh3DDcF3gH8gly1YwnpQiyaOoqAWyn2mG5G-qguN4mURRm2a_0zuE8xq5-MXfZk1VNTU8RABZmXIOg_PLphasKUtkA0g59CphVkWOngWygmUlRl70LcePMmU518FOs7HOEA6dq6YzbEXDXALf5qXxzYFkNw0XOoMSbJiSQ1jZQWWPlCHgFEsUqLFGtHCjBSIWeK_h9G-xJAaBvAPyHhg8WMrSyrSrJNewUgLwiybfaLQSLFjJAewnTHPsBt_JNqJTvaDHVzD6RsAc6--jxM78WYg8hOgmTCh9bb7LTDNg5iGzndOeoxvJnt2efdu_F_zbMqQh9Q-FepCoj2l13jY11w1bGUasuFsJL7X3mrzsHDPJCrEZpVKs_McoNi3tQVMivIfhZHo1vx7CPxhezZeTxcVsvpwttP759no6G5r9IbBbIBUYWDUycwfmPtq_YKObE6jhqsRez8QcraSr0-26MdWCjgFHH_RPu2zdS4sfjw0qSSLtdo6dOzOc9TSgH_828hrgyNYFcV6o8lcaMX7pAOMxnUDfBVAj--AF7cBT2J2KtBYCjqb693RZjzN3sinNY9zjE2tzRLlj8h-LcZiKAG9AUx4Zzf2SkPJNnUHGMBV4rImAjPbaYtffKSiWIhfD-9jO9RSUlWsrj91Cn8Tua2JNideADNSXbX6wvn6h5CzyGLhgRX1Hxu4VknlNf0VTe75Xt2bIZL-73NjDHbymynZ3mR9fenN2lsDg3SC8jLHd29fl8Hc0pj6d9mya0Ui2ifNGB7A7lPU8VrYdTfAX4g7X7l_5IVxHvoeAllceEYtsfWoJH8FOOsxCLwD3nLZVRKpJF6uW-LLC6of64PwHAkgx1Q==" alt="&quot;ComputerWriteController&quot; für Schreibzugriffe an der REST-Schnittstelle">
+</div>
+<div class="title">Figure 4. "ComputerWriteController" für Schreibzugriffe an der REST-Schnittstelle</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_graphql_schnittstelle"><a class="anchor" href="#_die_graphql_schnittstelle"></a><a class="link" href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFVE1TgzAQvfMrdvCAjlrHaweZ-nHpqX6enB5isqVRCJiEOqj974ZgaEqZllOy-_Zt9u0uEdxLXHH8AlZJuoT4OtMJCwIuNMoFoWj8Rc4Vxs9JEJSEfpAUYSJQ6Xd1kUpSLj8z-AkAaEaUgnDyiKrIVihDIArcxfiXnGF3B8olzTDw4l4UTpukFEtdSGXDezbH0jMPkD1UKGtLYU8u0F4G4NcybRM2Bwduzh62e_oow4V-NRCGYj5KnEDBeqMPLfKyMg-0wjgjCs11bU0u863DxXHrTRLjXQdelEK54qYNQ2GPSNjTvz-OTVahZZHBLonr09Gd_bbIQl2X2FHePc_gCmY517EznUFEPnRFMq44Sh3BL0Qov7FKdZRY1bxgS2zl8xk3KvZLsB3ppN0qorl103R84iy95reOtiCAU2hbb6xE1YLCggt2U0_Zse2xMXM2BqUlF-nJuJtt763JPqaORZAcHY_RoxIMjR_ZMOfrvGVdtwoM116cV-V5AuFlONjfsZuEPRQjM439Xvht8P0HaLrFPYBzw7-by9uQwZxbCEfjA_zqD2G3AN5P5zCbB143K2xnF_PSbGqO-Ruav84fbrqxMA==" alt="ComputerQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle">
+</div>
+<div class="title">Figure 5. ComputerQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle</div>
+</div>
+<div class="paragraph">
+<p>Donec sollicitudin molestie malesuada. Praesent sapien massa, convallis a
+pellentesque nec, egestas non nisi.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVF1v0zAUfc-vuOoesmksiNcqRCu0oAp1Q6XTHhAPnnNJzRI7-KNTGfvvOM7seSV0JU--H-f45vjYKXyWuGF4B6WRdA35pNZFmSSMa5TfCUVbFw1TmK-KJGkJvSUVwjlHpX-o15Uk7fpnDfcJAK2JUjA6X6IS9QblCIgCH9j6mpUYYqBM0hqTCHel8KMhslQOGCKPDIlh6Lybl2KrhQwEcS6iidMDZAujiWaCOxYfeLiPB3ATWfU7dwvf361978OTfgqpkUxvM2L0OlZPb1srkqgR3kI6mS7mFyn8hnQxX02W72bz1Wzp4k9XF9NZ2itsm4O6HfDvybq0Cs0q7o4F6ONMsmqts6InjmamommNVQ6Opu5zY_sicm1_B44-uM-V_P7vPS7P-66isNWHJEIrlBtmrbYPfm31wi-PjXlux-Faihqe2GIJPWq6urRKXjZM5z71ClJyqw2pmWIotdMT5S80lU4Lp1IE9lrFfLsC-5r3RvD4sym7KNyN4xOfCbZ-loot2hd6SU4h2NOm-4O1C6K2nAKVSDQeOyPapD-vcRjwZBwus9KS8ap4mdS05X5Sq0jEy01zg_IA3hJrjHhZOYZ-pojsRlgI4eGA_ym0OCvFHT8rYPRmNGyYsffYXp7M2t4XD-3rTRL7IzPtf_A8_uxLbeEh3dvodvaX_IC2ZHf0r9btJfJvg4PtdoSZ7Om4W4JNax-BBjsPqOQPlAAbtg==" alt="ComputerMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle">
+</div>
+<div class="title">Figure 6. ComputerMutationResolver für Schreibzugriffe an der GraphQL-Schnittstelle</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_der_anwendungskern"><a class="anchor" href="#_der_anwendungskern"></a><a class="link" href="#_der_anwendungskern">1.4. Der Anwendungskern</a></h3>
+<div class="paragraph">
+<p>Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFUsFSwjAQvfcrdupBHAXHa6cTEb1wU_TGcAjJAoE2qUmK01H-3bVQ2g5Femo2b1_evn3X8Gpxq_ALZG7FCuKnxDMZBEp7tAsukO5NqhzGHywIMi42fIkw1Oj82t0Lk6ZGw3cAIBLuHITDsV6j8HyeYAjcQX0kzEpJbFRAKCvoYlcT-yJDY9MG4wQz45Q3tvhTsDvVcNpSiahbG1LqYltQXe-QRXNmORlSPlIVUXvli7JUvfx8wFGJumuoQ7tV5OXVS_m1et5ytMUoV4mkvg6uCXL5fuiPY5KivTUJMEanhtu9G6rseQFuad5CC1goLUfFWPaUjMB5q_TyJjputHoBfiDXEgmMknUw9FwuVhurCKpQP0a0E2GsjPeEd8B1wTpop7M92W4_Vdc8pt9nED6ELRMi-GxacrG33lwEJ5sHS7_nBQzybMDaIb0MbEToAv5gyXkUYY6ZKVFNI2AwpYBK1DOCtXL7D64VQbK-jDimGSU1xXSO1gW_agZTHA==" alt="&quot;ComputerReadService&quot; im Anwendungskern">
+</div>
+<div class="title">Figure 7. "ComputerReadService" im Anwendungskern</div>
+</div>
+<div class="paragraph">
+<p>Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget
+malesuada.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVT1v2zAQ3fUrDs5QB01cdBUMIUHaIUM_kBbpUHSgyWvChCIFklJrVP7vpSzJpChZcbzx7t27d0c_6g181Vhx_AOs1PQR1tfCZixJuLSofxOKLq9ybnD9PUuSgtBn8oBwJdHYJ_OOqjxXEv4lAFQQY2BxdSufkFqyEbgAYsAfHeaRMwwiQLmmLrHzxHZboNJ5wHiHhTLcKr1tFOzGGsYlvQhfGkjxwaEgH5-Q5eYsSreQfZM-iNJyu92H-s43Hc6FXLWHGtQVd7s8-7D_TdbcyooIzoLMZ5Ljx7_cWBMEr7XlzyhkmeeoR9l71IYrOebqEl9Ky4hFlkwI-KG5xW-d0vXaDS2tVgKyzJ2Ce12eu0g7AcBbt9mtpEA1Ot5lv6j0wHqeHv5BxmouH-po4NqPWU8Ml0WNyqIZYMlZCi3fBYybXkDVztuDAhWOfIP6lSrq4WLraJ2xSIYCByKD_hulBBLZluzai5i8AnV5mcHi_eKQvW9aE-v6dpAUqjj0Cro7JOxApP3hBApvlhRGZnNchZqZa1UWq2z4MJyADHz7UkG36RmYAwVWnSWbsucMPPLsDPKYkWdKJtz9Mnpo-WicBvrTvYIM5a9jS4kwU9uNIEfudhI1eI8h2N8p0kaOgFVQElGfVvSJcOGNsGu-AvuvBOaFe-xzbB4Pk_wHDg5_Yw==" alt="&quot;ComputerWriteService&quot; im Anwendungskern">
+</div>
+<div class="title">Figure 8. "ComputerWriteService" im Anwendungskern</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_klasse_für_entities"><a class="anchor" href="#_klasse_für_entities"></a><a class="link" href="#_klasse_für_entities">1.5. Klasse für Entities</a></h3>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
+accumsan id imperdiet et, porttitor at sem.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqNVMtu2zAQvPsrFrmoPdQfYLhG08SXBIkM1P0AStrYhPjCkkqhtPn3riyJkqW09kEAd7gzu1wOlcCO8FXiLygqyo-wvlVhUywWTuSlOCCE2qElDb8XALkS3sPNt60JMtQ3IDy0S947ygK7CHJJucIR4c6qSpsToV32hDaaE3YktaB6xDtDevoZOFdJDe7tkzBtqzHq2RGYMx-sNKPiQ9hzB2RObiT3ltVP3Bj11Ah8MCdCEfCev_HEJmCc3QSfy_10xVxuCvZyU7yXex-8kFvtqoC0xPaeR55obMK32e7fUoCvkDyn--33NH1M4A8k99sfj_t092V3l3Q-iLmDGQZ6VzwW6PdgvW6Lbza87JzI66YVgM5onz7DuYMY4GEV1qgaZLECH0iaw4QSM4zQeClHUFhNzvBhniP7ht5buiR4IPEiy5J1r6idoQzeO5T5ES8qa54fmmuzHaH0KzCVzpD-lZQha2Dmfe0D6kuSR6vRsX-umKksUXFp3fT5_xaUxBekTHBiZq1CYbrMyasYc5DesDrwxTXbbfrU9Wf9lKESSnqJNHDeG09GNy6Xm-EXOKCVY3zsDmadLI7a8bvR2JzML_4CxzTY7w==" alt="Entity">
+</div>
+<div class="title">Figure 9. Entity</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_programmierrichtlinien_für_typescript_und_javascript"><a class="anchor" href="#_programmierrichtlinien_für_typescript_und_javascript"></a><a class="link" href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Für die Programmierung mit <strong>TypeScript</strong> und <strong>JavaScript</strong> wird folgende
+Styleguides empfehlenswert:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<em>Microsoft</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines" class="bare">https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Angular</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://angular.io/docs/ts/latest/guide/style-guide.html" class="bare">https://angular.io/docs/ts/latest/guide/style-guide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>Google</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://google.github.io/styleguide/tsguide.html" class="bare">https://google.github.io/styleguide/tsguide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<em>React</em>
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/airbnb/javascript/tree/master/react" class="bare">https://github.com/airbnb/javascript/tree/master/react</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2022-11-15 21:02:54 +0100
+</div>
+</div>
+</body>
+</html>

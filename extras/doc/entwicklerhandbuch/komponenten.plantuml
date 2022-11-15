@@ -1,0 +1,44 @@
+' Preview durch <Alt>d
+
+@startuml Komponenten
+
+left to right direction
+
+actor RESTClient
+actor GraphQLClient
+
+node "Nest" {
+  [RequestLoggerMiddleware]
+
+  [ComputerController]
+  [ComputerResolver]
+
+  [ComputerService]
+
+  [Repository<Computer>]
+}
+
+
+cloud {
+    [TypeORM]
+}
+
+database "DB computer" {
+    [Tabelle computer]
+}
+
+RESTClient ~~> [RequestLoggerMiddleware]
+GraphQLClient ~~> [RequestLoggerMiddleware]
+
+[RequestLoggerMiddleware] ~~> [ComputerController]
+[RequestLoggerMiddleware] ~~> [ComputerResolver]
+
+[ComputerController] ..> [ComputerService]
+[ComputerResolver] ..> [ComputerService]
+[ComputerService] ..> [Repository<Computer>]
+
+[Repository<Computer>] ~~> [TypeORM]
+[TypeORM] ~~> [Tabelle computer]
+
+
+@enduml

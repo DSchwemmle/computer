@@ -1,0 +1,65 @@
+' Preview durch <Alt>d
+
+@startuml Anwendungskern
+
+interface Promise<T>
+
+package @nestjs/common {
+  class "@Injectable" as Injectable
+  hide Injectable circle
+}
+
+package typeorm {
+  class Repository<T>
+}
+
+package @nestjs/typeorm {
+  class "@InjectRepository" as InjectRepository
+  hide InjectRepository circle
+}
+
+package computer {
+  package entity {
+    class Computer
+  }
+
+  package service #DDDDDD {
+    class ComputerInvalid
+    class NameExists
+    class ArtikelnummerExists
+    class VersionInvalid
+    class VersionOutdated
+
+    class ComputerWriteService << control >> <<@Injectable()>> {
+      + async create(computer: Computer): Promise<string|ComputerInvalid|NameExists|ArtikelnummerExists>
+      + async update(id: string, computer: Computer, version: string): Promise<number|ComputerInvalid|NameExists|ArtikelnummerExists|VersionInvalid|VersionOutdated>
+      + async delete(id: string): Promise<boolean>
+    }
+
+    ComputerWriteService o--> "1" ComputerValidationService: validationService
+    ComputerWriteService o--> "1" ComputerReadService: readService
+    ComputerWriteService o--> "1" Repository: @InjectRepository repo
+
+    ComputerWriteService .up.> Injectable
+    ComputerWriteService .up.> InjectRepository
+
+    ComputerWriteService .up.> Promise
+    ComputerWriteService ..> Computer
+    ComputerWriteService .up.> ComputerInvalid
+    ComputerWriteService .up.> NameExists
+    ComputerWriteService .up.> ArtikelnummerExists
+    ComputerWriteService .up.> VersionInvalid
+    ComputerWriteService .up.> VersionOutdated
+
+    ComputerInvalid .up[hidden].> Computer
+    Computer .up[hidden].> Promise
+    Computer .up[hidden].> Injectable
+    Computer .up[hidden].> InjectRepository
+    NameExists .up[hidden].> Computer
+    ComputerValidationService .[hidden].> Repository
+  }
+}
+
+hide empty members
+
+@enduml

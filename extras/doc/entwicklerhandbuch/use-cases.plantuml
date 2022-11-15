@@ -1,0 +1,20 @@
+' Preview durch <Alt>d
+
+@startuml Use Cases
+
+actor Gast
+actor Admin
+actor Kunde
+
+rectangle computer {
+    Gast --> (Computer suchen)
+    Admin --> (Computer suchen)
+    Admin --> (Computer anlegen)
+    Admin --> (Computer ändern)
+    Admin --> (Computer löschen)
+    Kunde --> (Computer suchen)
+    Kunde --> (Computer anlegen)
+    Kunde --> (Computer ändern)
+}
+
+@enduml

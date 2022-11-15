@@ -1,0 +1,51 @@
+' Preview durch <Alt>d
+
+@startuml Entity
+
+package typeorm {
+  class "@Entity" as Entity
+  hide Entity circle
+  class "@Column" as Column
+  hide Column circle
+  class "@PrimaryColumn" as PrimaryColumn
+  hide PrimaryColumn circle
+  class "@OneToMany" as OneToMany
+  hide OneToMany circle
+  class "@JoinColumn" as JoinColumn
+  hide JoinColumn circle
+  class "@ManyToOne" as ManyToOne
+  hide ManyToOne circle
+  class "@CreateDateColumn" as CreateDateColumn
+  hide CreateDateColumn circle
+  class "@UpdateDateColumn" as UpdateDateColumn
+  hide UpdateDateColumn circle
+}
+
+package computer.entity {
+  class "type ComputerArt = 'NOTEBOOK' | 'DESKTOP-PC'" as ComputerArt
+  hide ComputerArt circle
+
+  class Computer <<entity>> <<@Entity>> {
+    @Column() @PrimaryColumn() readonly id: string
+    @Column() readonly name: string
+    @Column() readonly art: ComputerArt
+    @Column() readonly prozessor: string
+    @Column() readonly grafikkarte: string
+    @Column() readonly arbeitsspeicher: string
+    @Column() readonly massenspeicher: string
+    @Column() readonly preis: number
+    @Column() readonly betriebssystem: string
+    @Column() readonly homepage: string
+    @Column() readonly artikelnummer: number
+    @Column() readonly lieferbar: boolean
+    @CreateDateColumn() readonly erzeugt: Date
+    @UpdateDateColumn() readonly aktualisiert: Date
+  }
+
+  Computer ..> Entity
+  Computer .up.> ComputerArt
+}
+
+hide empty members
+
+@enduml

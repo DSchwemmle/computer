@@ -1,0 +1,75 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"Funktionen, um ComputerListdaten zu lesen"
+type Query {
+  computerList(name: String): [Cmputer!]
+
+  computer(id: ID!): Computer
+}
+
+"Funktionen, um ComputerList neu anzulegen, zu aktualisieren oder zu löschen"
+type Mutation {
+  create(input: ComputerInput!): String
+
+  update(input: ComputerUpdateInput!): Int
+
+  delete(id: ID!): Boolean
+}
+
+"Datenschema zu einem Computer, der gelesen wird"
+type Computer {
+  id: ID
+  version: Int
+  name: String
+  art: ComputerArt
+  prozessor: String
+  grafikkarte: String
+  arbeitsspeicher: String
+  massenspeicher: String
+  preis: Float
+  betriebssystem: String
+  homepage: String
+  artikelnummer: Int
+  lieferbar: Boolean
+}
+
+"Enum-Typ für die Art eines Computers"
+enum ComputerArt {
+  DRUCKAUSGABE
+  KINDLE
+}
+
+"Daten für ein neuen Computer"
+input ComputerInput {
+  name: String!
+  art: ComputerArt
+  prozessor: String
+  grafikkarte: String
+  arbeitsspeicher: String
+  massenspeicher: String
+  preis: Float
+  betriebssystem: String
+  homepage: String
+  artikelnummer: Int
+  lieferbar: Boolean
+}
+
+"Daten für einen zu ändernden Computer"
+input ComputerUpdateInput {
+  id: ID
+  version: Int
+  name: String!
+  art: ComputerArt
+  prozessor: String
+  grafikkarte: String
+  arbeitsspeicher: String
+  massenspeicher: String
+  preis: Float
+  betriebssystem: String
+  homepage: String
+  artikelnummer: Int
+  lieferbar: Boolean
+}

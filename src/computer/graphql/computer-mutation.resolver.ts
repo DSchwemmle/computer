@@ -1,0 +1,151 @@
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { type CreateError, type UpdateError } from '../service/errors.js';
+import { UseGuards, UseInterceptors } from '@nestjs/common';
+import { type Computer } from '../entity/computer.entity.js';
+import { ComputerWriteService } from '../service/computer-write.service.js';
+import { type IdInput } from './computer-query.resolver.js';
+import { JwtAuthGraphQlGuard } from '../../security/auth/jwt/jwt-auth-graphql.guard.js';
+import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.js';
+import { Roles } from '../../security/auth/roles/roles.decorator.js';
+import { RolesGraphQlGuard } from '../../security/auth/roles/roles-graphql.guard.js';
+import { UserInputError } from 'apollo-server-express';
+import { getLogger } from '../../logger/logger.js';
+
+type ComputerCreateDTO = Omit<
+    Computer,
+    'aktualisiert' | 'erzeugt' | 'id' | 'version'
+>;
+type ComputerUpdateDTO = Omit<Computer, 'aktualisiert' | 'erzeugt'>;
+
+// Authentifizierung und Autorisierung durch
+//  GraphQL Shield
+//      https://www.graphql-shield.com
+//      https://github.com/maticzav/graphql-shield
+//      https://github.com/nestjs/graphql/issues/92
+//      https://github.com/maticzav/graphql-shield/issues/213
+//  GraphQL AuthZ
+//      https://github.com/AstrumU/graphql-authz
+//      https://www.the-guild.dev/blog/graphql-authz
+
+@Resolver()
+// alternativ: globale Aktivierung der Guards https://docs.nestjs.com/security/authorization#basic-rbac-implementation
+@UseGuards(JwtAuthGraphQlGuard, RolesGraphQlGuard)
+@UseInterceptors(ResponseTimeInterceptor)
+export class ComputerMutationResolver {
+    readonly #service: ComputerWriteService;
+
+    readonly #logger = getLogger(ComputerMutationResolver.name);
+
+    constructor(service: ComputerWriteService) {
+        this.#service = service;
+    }
+
+    @Mutation()
+    @Roles('admin', 'mitarbeiter')
+    async create(@Args('input') computerDTO: ComputerCreateDTO) {
+        this.#logger.debug('create: computerDTO=%o', computerDTO);
+
+        const result = await this.#service.create(
+            this.#dtoToComputer(computerDTO),
+        );
+        this.#logger.debug('createComputer: result=%o', result);
+
+        if (Object.prototype.hasOwnProperty.call(result, 'type')) {
+            // UserInputError liefert Statuscode 200
+            throw new UserInputError(
+                this.#errorMsgCreateComputer(result as CreateError),
+            );
+        }
+        return result;
+    }
+
+    @Mutation()
+    @Roles('admin', 'mitarbeiter')
+    async update(@Args('input') computer: ComputerUpdateDTO) {
+        this.#logger.debug('update: computer=%o', computer);
+        const versionStr = `"${computer.version?.toString()}"`;
+
+        const result = await this.#service.update(
+            computer.id,
+            computer as Computer,
+            versionStr,
+        );
+        if (typeof result === 'object') {
+            throw new UserInputError(this.#errorMsgUpdateComputer(result));
+        }
+        this.#logger.debug('updateComputer: result=%d', result);
+        return result;
+    }
+
+    @Mutation()
+    @Roles('admin')
+    async delete(@Args() id: IdInput) {
+        const idStr = id.id;
+        this.#logger.debug('delete: id=%s', idStr);
+        const result = await this.#service.delete(idStr);
+        this.#logger.debug('deleteComputer: result=%s', result);
+        return result;
+    }
+
+    #dtoToComputer(computerDTO: ComputerCreateDTO): Computer {
+        const computer: Computer = {
+            id: undefined,
+            version: undefined,
+            name: computerDTO.name,
+            art: computerDTO.art,
+            prozessor: computerDTO.prozessor,
+            grafikkarte: computerDTO.grafikkarte,
+            arbeitsspeicher: computerDTO.arbeitsspeicher,
+            massenspeicher: computerDTO.massenspeicher,
+            preis: computerDTO.preis,
+            betriebssystem: computerDTO.betriebssystem,
+            homepage: computerDTO.homepage,
+            artikelnummer: computerDTO.artikelnummer,
+            lieferbar: computerDTO.lieferbar,
+            erzeugt: undefined,
+            aktualisiert: undefined,
+        };
+
+        return computer;
+    }
+
+    #errorMsgCreateComputer(err: CreateError) {
+        switch (err.type) {
+            case 'ConstraintViolations': {
+                return err.messages.join(' ');
+            }
+            case 'NameExists': {
+                return `Der Name "${err.name}" existiert bereits`;
+            }
+            case 'ArtikelnummerExists': {
+                return `Die Artikelnummer ${err.artikelnummer} existiert bereits`;
+            }
+            default: {
+                return 'Unbekannter Fehler';
+            }
+        }
+    }
+
+    #errorMsgUpdateComputer(err: UpdateError) {
+        switch (err.type) {
+            case 'ConstraintViolations': {
+                return err.messages.join(' ');
+            }
+            case 'NameExists': {
+                return `Der Name "${err.name}" existiert bereits`;
+            }
+            case 'ComputerNotExists': {
+                return `Es gibt keinen Computer mit der ID ${err.id}`;
+            }
+            case 'VersionInvalid': {
+                return `"${err.version}" ist keine gueltige Versionsnummer`;
+            }
+            case 'VersionOutdated': {
+                return `Die Versionsnummer "${err.version}" ist nicht mehr aktuell`;
+            }
+            default: {
+                return 'Unbekannter Fehler';
+            }
+        }
+    }
+}

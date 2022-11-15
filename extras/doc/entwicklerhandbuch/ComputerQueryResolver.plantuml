@@ -1,0 +1,58 @@
+' Preview durch <Alt>d
+
+@startuml Controller-Klasse
+
+interface Promise<T>
+
+package @nestjs/graphql {
+  class "@Resolver" as Resolver
+  hide Resolver circle
+
+  class "@UseInterceptors" as UseInterceptors
+  hide UseInterceptors circle
+
+  class "@Query" as Query
+  hide Query circle
+
+  class "@Args" as Args
+  hide Args circle
+
+  Resolver .left[hidden].> Promise
+}
+
+package computer {
+  package entity {
+    class Computer <<entity>>
+  }
+
+  package service {
+    class ComputerReadService << control >>
+  }
+
+  package graphql #DDDDDD {
+    class "type ComputerDTO = Omit<Computer, 'aktualisiert' | 'erzeugt'>" as ComputerDTO
+    hide ComputerDTO circle
+
+    class ComputerQueryResolver << control >> << @Resolver() >> << @UseInterceptors() >> {
+      + @Query() async findById(@Args() id: string): Promise<ComputerDTO>
+      + @Query() async find(@Args() name: string | undefined): Promise<ComputerDTO[]>
+    }
+
+    ComputerQueryResolver o-up-> "1" ComputerReadService : service
+    ComputerQueryResolver ..> ComputerDTO
+    ComputerDTO ..> Computer
+    ComputerQueryResolver ..> Resolver
+
+    ComputerQueryResolver ..> Promise
+
+    ComputerDTO .[hidden].> Computer
+    Computer .[hidden].> Promise
+    ComputerReadService .[hidden].> Promise
+    Computer .[hidden].> Resolver
+    ComputerReadService .[hidden].> Resolver
+  }
+}
+
+hide empty members
+
+@enduml

@@ -1,0 +1,38 @@
+//
+// N e t z w e r k   -  V e r b i n d u n g   n o t w e n d i g
+//
+
+### Suche alle Computer
+GET {{restUrl}}
+
+### Suche mit vorhandener Computer-ID
+GET {{restUrl}}/00000000-0000-0000-0000-000000000001
+
+### Suche mit vorhandener Computer-ID und Versionsnummer
+GET {{restUrl}}/00000000-0000-0000-0000-000000000001
+If-None-Match: "0"
+
+### Suche mit vorhandener Computer-ID und falscher Versionsnummer
+GET {{restUrl}}/00000000-0000-0000-0000-000000000001
+If-None-Match: 0
+
+### Suche mit ungueltiger Computer-ID
+GET {{restUrl}}/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+
+### Suche mit nicht-vorhandener Computer-ID
+GET {{restUrl}}/99999999-9999-9999-9999-999999999999
+
+### Suche mit vorhandenem Namen
+GET {{restUrl}}?name=Apple-MacBook-Pro
+
+### Suche mit nicht-vorhandenem Namen
+GET {{restUrl}}?name=xxx
+
+### Suche mit vorhandener Artikelnummer
+GET {{restUrl}}?isbn=1234567890
+
+### Suche mit nicht-vorhandener Property
+GET {{restUrl}}?php=true
+
+### Suche mit gueltiger ComputerArt
+GET {{restUrl}}?art=NOTEBOOK

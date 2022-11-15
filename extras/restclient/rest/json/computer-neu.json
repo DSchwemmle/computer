@@ -1,0 +1,13 @@
+{
+  "name": "Microsoft Surface Pro 9",
+  "art": "NOTEBOOK",
+  "prozessor": "Intel Core i7-1265U",
+  "grafikkarte": "Intel Iris Xe-Grafik",
+  "arbeitsspeicher": "16 GB",
+  "massenspeicher": "512 GB",
+  "preis": 2289,
+  "betriebssystem": "Windows 11 Pro",
+  "homepage": "https://microsoft.com/",
+  "artikelnummer": 1237995187,
+  "lieferbar": true
+}

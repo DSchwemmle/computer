@@ -1,0 +1,13 @@
+{
+  "name": "Dell XPS 15",
+  "art": "NOTEBOOK",
+  "prozessor": "Intel Core i9-12900HK",
+  "grafikkarte": "NVIDIA GeForce RTX 3050 Ti",
+  "arbeitsspeicher": "32 GB",
+  "massenspeicher": "1024 GB",
+  "preis": 3398.99,
+  "betriebssystem": "Windows 11 Pro",
+  "homepage": "https://dell.com/",
+  "artikelnummer": 1234567891,
+  "lieferbar": true
+}
